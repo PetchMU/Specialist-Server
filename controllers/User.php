@@ -7,7 +7,12 @@ class User{
 	}
 	
 	function detail($id){
-		echo 'will show detail of user id=' . $id;
+		$db = Database::create();
+		$r = $db->read("select * from Users where uid = " . $id);
+		
+		echo json_encode([
+			'detail' => $r[0]
+		]);
 	}
 	
 }
