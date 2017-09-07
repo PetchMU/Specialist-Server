@@ -1,3 +1,12 @@
 <?php
 
-echo 'this is api ' . $_SERVER['REQUEST_URI'];
+include 'helpers/Router.php';
+
+$router = new Router();
+include 'router.php';
+
+$found = $router->run();
+
+if(!$found){
+	echo '404';
+}
