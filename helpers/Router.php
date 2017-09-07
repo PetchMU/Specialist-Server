@@ -19,7 +19,7 @@ class Router{
 		
 		foreach($this->route as $route => $controller){
 			$route = $this->explode_uri($route);
-			
+                        
 			if(count($uri) != count($route)){
 				continue;
 			}
@@ -36,7 +36,7 @@ class Router{
 						break;
 					}
 				}
-				if($route[$i] != $uri[$i]){
+				elseif($route[$i] != $uri[$i]){
 					$match = false;
 					break;
 				}
@@ -50,6 +50,10 @@ class Router{
 				include $this->controller_path . '/' . $controller[0] . '.php';
 				$classname = $controller[0];
 				$methodname = $controller[1];
+                                
+                                $classname = explode("/", $classname);
+                                $classname = array_pop($classname);
+                                
 				$handler = new $classname();
 				call_user_func_array([$handler, $methodname], $params);
 				return true;
@@ -62,7 +66,7 @@ class Router{
 	private function explode_uri($uri){
 		$uri = explode("/", $uri);
 		$uri = array_filter($uri);
-		return $uri;
+		return array_values($uri);
 	}
 	
 }
