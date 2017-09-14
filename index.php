@@ -6,7 +6,11 @@ error_reporting(~0);
 include 'helpers/Router.php';
 include 'helpers/Response.php';
 include 'helpers/Request.php';
+include 'helpers/View.php';
 include 'database/Database.php';
+
+
+View::setViewPath(__DIR__ . "/views");
 
 $router = new Router();
 include 'router.php';

@@ -1,6 +1,21 @@
 <?php
 
 class User {
+    
+    function main(){
+        $db = Database::create();
+        $res = $db->read("select * from Users");
+        View::load('test', [
+            'user_list' => $res
+        ]);
+    }
+    
+    function main2($num){
+        echo 'user: ' . $num;
+        $db = Database::create();
+        $res = $db->read("select * from Users where uid = $num");
+        View::load('test');
+    }
 
     function listAll() {
 
