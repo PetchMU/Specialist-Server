@@ -14,7 +14,7 @@ class Router{
 	}
 	
 	function run(){
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = $_SERVER['REDIRECT_URL'];
 		$uri = $this->explode_uri($uri);
 		
 		foreach($this->route as $route => $controller){
