@@ -9,3 +9,6 @@ $router->any("/user", "User.main");
 $router->any("/user/:num", "User.main2");
 
 $router->any("/admin", "admin/Admin");
+$router->any("/home", "Home.main");
+$router->any("/login", "Login.main");
+$router->any("/logout", "Logout.main");
