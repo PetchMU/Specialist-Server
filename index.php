@@ -3,10 +3,13 @@
 ini_set('display_errors', 1);
 error_reporting(~0);
 
+session_start();
+
 include 'helpers/Router.php';
 include 'helpers/Response.php';
 include 'helpers/Request.php';
 include 'helpers/View.php';
+include 'helpers/Auth.php';
 include 'database/Database.php';
 
 
