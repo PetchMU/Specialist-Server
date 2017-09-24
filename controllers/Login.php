@@ -13,6 +13,10 @@
  */
 class Login {
     function main(){
+        $userModel = Model::load('UserModel');
+        if(isset($_GET['email']) && isset($_GET['password'])){
+            $userModel->login($_GET['email'], $_GET['password']);
+        }
         View::load('login');
     }
         
