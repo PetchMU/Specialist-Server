@@ -2,6 +2,11 @@
 include "header.php";
 ?>
 <h1>Sign Up</h1>
+<div class="collection">
+    
+    <a href="#!" class="collection-item red darken-1"><span class="new badge">4</span>Alan</a>
+    
+  </div>
 <div class="row">
     <form class="col s12"> 
         <div class="row">
