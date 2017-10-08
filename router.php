@@ -12,3 +12,5 @@ $router->any("/admin", "admin/Admin");
 $router->any("/home", "Home.main");
 $router->any("/login", "Login.main");
 $router->any("/logout", "Logout.main");
+$router->any("/welcome", "Welcome.main");
+$router->any("/signup", "SignUp.main");
