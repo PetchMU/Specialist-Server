@@ -10,11 +10,16 @@ class User {
         ]);
     }
     
-    function main2($num){
-        echo 'user: ' . $num;
-        $db = Database::create();
-        $res = $db->read("select * from Users where uid = $num");
-        View::load('test');
+    function profile($userid){
+        $userModel = Model::load('UserModel');
+        $userInfo = $userModel->getUserInfoById($userid);
+        if($userInfo == null){
+            View::load('profile_not_found');
+        }
+        else{
+            View::load('profile');
+        }
+        
     }
 
     function listAll() {

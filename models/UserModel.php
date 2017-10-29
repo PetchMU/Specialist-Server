@@ -27,12 +27,28 @@ class UserModel {
         return isset($_SESSION['user']);
     }
     
+    function getUserInfoById($userid){
+        $db = Database::create();
+        $r = $db->read("select * from Users where uid = $userid");
+        if(empty($r)){
+            return null;
+        }
+        else{
+            unset($r[0]['password']);
+            return $r[0];
+        }
+    }
+    
     function getInfo(){
         $data = $_SESSION['user'];
         $data['special_field'] = $this->getSpecialField();
         return $data;
     }
     
+    function getThumbnailUrl(){
+        return $this->getInfo()['picture'];
+    }
+            
     function getSpecialField(){
         $f = $_SESSION['user']['special_field'];
         return json_decode($f,true);

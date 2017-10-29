@@ -20,7 +20,9 @@ class Model {
     }
 
     static function load($name) {
-        include Model::$model_path . '/' . $name . '.php';
+        if (!class_exists($name)) {
+            include Model::$model_path . '/' . $name . '.php';
+        }
         return new $name;
     }
 

@@ -13,11 +13,23 @@
  */
 class Login {
     function main(){
+        
+        Toolbar::setTitle('login');
+        
         $userModel = Model::load('UserModel');
-        if(isset($_GET['email']) && isset($_GET['password'])){
-            $userModel->login($_GET['email'], $_GET['password']);
+        if(isset($_POST['email']) && isset($_POST['password'])){
+            $result = $userModel->login($_POST['email'], $_POST['password']);
+            if($result){
+                redirect('/home');
+            } else {
+                View::load('login', [
+                    'err_user_password_wrong' => true
+                ]);
+            }
         }
-        View::load('login');
+        else{
+            View::load('login');
+        }
     }
         
     

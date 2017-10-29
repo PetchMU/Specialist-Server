@@ -1,7 +1,7 @@
 <?php
 
 ini_set('display_errors', 1);
-error_reporting(~0);
+//error_reporting(0);
 
 session_start();
 
@@ -12,6 +12,7 @@ include 'helpers/View.php';
 include 'helpers/Model.php';
 include 'helpers/Auth.php';
 include 'helpers/fn.php';
+include 'helpers/Toolbar.php';
 include 'database/Database.php';
 
 

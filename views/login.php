@@ -1,10 +1,13 @@
 <?php
 include "header.php";
 ?>
+<?php if ($err_user_password_wrong): ?>
+    <div class="collection-item red lighten-3" style="color:#fff">Username or Password wrong</div>
+<?php endif; ?>
 
 <div class="row">
-    <form class="col s12">
-        
+    <form class="col s12" method="post">
+
         <div class="row">
             <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate">
@@ -17,7 +20,7 @@ include "header.php";
                 <label for="password">Password</label>
             </div>
         </div>
-       
+
         <button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Login</button>
     </form>
 </div>
