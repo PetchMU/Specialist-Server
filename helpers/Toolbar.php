@@ -1,21 +1,30 @@
 <?php
 
 class Toolbar {
-    
+
     static $title = 'MindContact';
 
-    static function setTitle($title){
+    static function setTitle($title) {
         self::$title = $title;
     }
 
-    static function display(){
-        
+    static function display() {
+
         $userModel = Model::load('UserModel');
-        $thumbUrl = $userModel->isLogin() ? $userModel->getThumbnailUrl() : null;
-        
+        $is_login = $userModel->isLogin();
+
+        if ($is_login) {
+            $user_info = $userModel->getInfo();
+            $user_info['thumbnail'] = $userModel->getThumbnailUrl();
+        }
+        else{
+            $user_info = null;
+        }
+
         View::load('toolbar', [
             'title' => self::$title,
-            'thumbnail' => $thumbUrl
+            'user_info' => $user_info
         ]);
     }
+
 }

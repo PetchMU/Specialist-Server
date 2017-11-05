@@ -16,3 +16,6 @@ $router->any("/signup", "SignUp.main");
 
 $router->any("/admin", "admin/Admin");
 
+
+
+$router->any("/group", "Group.main");

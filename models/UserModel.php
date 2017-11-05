@@ -66,6 +66,27 @@ class UserModel {
         
         //echo("insert into Users (email, password) values ('$email', '$password') ");
         $e = $db->write("insert into Users (email, password) values ('$email', '$password') ");
+        $uid = $db->insertId();
+        
+        $a_pos = strpos($email, '@');
+        $username = substr($email, 0, min($a_pos,20));
+        $username = preg_replace('/([^A-Za-z0-9])/', '', $username);
+        $check_username = $username;
+        $i='';
+        while( !empty( $db->read("select 1 from Users where username = '$check_username'") ) ){
+            $i = intval($i) + 1;
+            $check_username = $username . $i;
+        }
+        
+        $thumb = "/res/images/thumbnail/_default.png";
+        
+        $db->write("
+            update Users set 
+                username = '$check_username',
+                fname = '$check_username',
+                picture = '$thumb'
+            where  uid  = $uid");
+        
         $this->login($email, $password);
         return self::REGISTER_OK;
     }
