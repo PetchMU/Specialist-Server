@@ -8,6 +8,8 @@ class SignUp {
         $err_pass_miss_match = FALSE;
         $email = "";
         
+        MenuFooter::hide();
+        
         if(isset($_POST['email']) && isset($_POST['password']) && isset ($_POST['confirmpassword'])){
             $email = trim($_POST['email']);
             $password = $_POST['password'];
@@ -30,7 +32,6 @@ class SignUp {
         
         //$p=[$_POST['email'] , $_POST['password'] , $_POST['confirmpassword']];
         //print_r(get_defined_vars());
-        
         View::load('signup',[
             "err_email_exist" => $err_email_exist,
             "err_pass_miss_match" => $err_pass_miss_match,

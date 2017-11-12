@@ -1,3 +1,5 @@
-
+<?php
+MenuFooter::display();
+?>
 </body>
-  </html>
+</html>

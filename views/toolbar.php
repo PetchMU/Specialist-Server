@@ -1,5 +1,5 @@
 
-<div class="row blue darken-1" style="min-height: 40px;">
+<div class="row blue darken-1" style="min-height: 40px; margin-bottom: 0; position: fixed; z-index: 1; width: 100%">
     <div class="col s1" style="position: absolute">
         <a href="#" data-activates="slide-out" class="button-collapse">
             <i id="js-open-side-bar" class="material-icons blue darken-2 white-text" style="margin-top: 10px;">dehaze</i>
@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-bottom: 50px">
     <div class="col s12  m12">
         <?php if (isLogin()): ?>
             <ul id="slide-out" class="side-nav">

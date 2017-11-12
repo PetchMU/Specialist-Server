@@ -19,3 +19,6 @@ $router->any("/admin", "admin/Admin");
 
 
 $router->any("/group", "Group.main");
+
+
+$router->any("/notification","Notification.main");

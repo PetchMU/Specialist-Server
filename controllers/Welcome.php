@@ -9,6 +9,7 @@ class Welcome {
             redirect('/home');
         }
         else{
+            MenuFooter::hide();
             View::load('welcome');
         }
         

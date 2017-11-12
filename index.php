@@ -13,6 +13,7 @@ include 'helpers/Model.php';
 include 'helpers/Auth.php';
 include 'helpers/fn.php';
 include 'helpers/Toolbar.php';
+include 'helpers/MenuFooter.php';
 include 'database/Database.php';
 
 
