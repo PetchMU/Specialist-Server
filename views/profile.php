@@ -8,15 +8,19 @@ include "header.php";
 
             <div class="card">
                 <div class="card-image">
-                    <img src="/res/images/thumbnail/1.png">
-                    <span class="card-title">Card Title</span>
+                    <img src="<?=$userInfo['picture']?>">
                 </div>
                 <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <h3><?=$userInfo['fname'] . ' ' . $userInfo['lname']?></h3>
+                    <h5>Birthdate</h5>
+                    <?=date('j M Y', strtotime($userInfo['dob']))?>
+                    <h5>Tel.</h5>
+                    <a href="tel:<?=$userInfo['phone']?>"><?=$userInfo['phone']?></a>
+                    <h5>Email</h5>
+                    <a href="mailto:<?=$userInfo['email']?>"><?=$userInfo['email']?></a>
                 </div>
                 <div class="card-action">
-                    <a href="#">This is a link</a>
+                    <a href="/user/<?=$userInfo['uid']?>/message">Private Massage</a>
                 </div>
             </div>
 

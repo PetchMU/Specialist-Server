@@ -1,25 +1,37 @@
 <?php
 
 class User {
-    
-    function main(){
+
+    function main() {
         $db = Database::create();
         $res = $db->read("select * from Users");
         View::load('test', [
             'user_list' => $res
         ]);
     }
-    
-    function profile($userid){
+
+    function profile($userid) {
         $userModel = Model::load('UserModel');
         $userInfo = $userModel->getUserInfoById($userid);
-        if($userInfo == null){
+        if ($userInfo == null) {
             View::load('profile_not_found');
+        } else {
+            View::load('profile', [
+                'userInfo' => $userInfo
+            ]);
         }
-        else{
-            View::load('profile');
-        }
+    }
+
+    function private_message($friend_uid) {
+        MenuFooter::hide();
         
+        $uid = userInfo('uid');
+        $chatModel = Model::load('ChatModel');
+        $chatInfo = $chatModel->getMessages($uid ,$friend_uid);
+        //print_r($chatInfo);
+        View::load('private_message', [
+            'chatInfo' => $chatInfo
+        ]);
     }
 
     function listAll() {

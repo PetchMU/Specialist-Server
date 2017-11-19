@@ -6,7 +6,12 @@ class Home {
         $userModel = Model::load('UserModel');
         
         if ($userModel->isLogin()) {
-            View::load('home');
+            
+            $friendModel = Model::load('FriendModel');
+            
+            View::load('home', [
+                'friend_list' => $friendModel->getAll()
+            ]);
         }
         else{
             redirect('/welcome');

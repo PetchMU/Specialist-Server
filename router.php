@@ -10,6 +10,7 @@ $router->any("/welcome", "Welcome.main");
 
 $router->any("/user", "User.main");
 $router->any("/user/:num", "User.profile");
+$router->any("/user/:num/message", "User.private_message");
 $router->any("/login", "Login.main");
 $router->any("/logout", "Logout.main");
 $router->any("/signup", "SignUp.main");
