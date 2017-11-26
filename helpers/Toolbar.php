@@ -3,9 +3,14 @@
 class Toolbar {
 
     static $title = 'MindContact';
+    static $show_back = false;
 
     static function setTitle($title) {
         self::$title = $title;
+    }
+    
+    static function showBackButton(){
+        self::$show_back = TRUE;
     }
 
     static function display() {
@@ -23,7 +28,8 @@ class Toolbar {
 
         View::load('toolbar', [
             'title' => self::$title,
-            'user_info' => $user_info
+            'user_info' => $user_info,
+            'show_back' => self::$show_back
         ]);
     }
 

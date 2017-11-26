@@ -1,9 +1,15 @@
 
 <div class="row blue darken-1" style="min-height: 40px; margin-bottom: 0; position: fixed; z-index: 1; width: 100%">
     <div class="col s1" style="position: absolute">
+        <?php if( !$show_back): ?>
         <a href="#" data-activates="slide-out" class="button-collapse">
             <i id="js-open-side-bar" class="material-icons blue darken-2 white-text" style="margin-top: 10px;">dehaze</i>
         </a>
+        <?php else: ?>
+        <a href="javascript:history.back()" data-activates="slide-out" class="button-collapse-b">
+            <i id="js-open-side-bar" class="material-icons blue darken-2 white-text" style="margin-top: 10px;">arrow_back</i>
+        </a>
+        <?php endif; ?>
     </div>
     <?php if (isLogin()): ?>
         <div class="col s1" style="position: absolute; right:15px; top: 5px;">

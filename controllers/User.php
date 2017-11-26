@@ -22,11 +22,17 @@ class User {
         }
     }
 
-    function private_message($friend_uid) {
+    function private_message($friend_uid) {        
+        Toolbar::showBackButton();
         MenuFooter::hide();
-        
         $uid = userInfo('uid');
         $chatModel = Model::load('ChatModel');
+        
+        if(isset($_POST['new_message']) && !empty(trim($_POST['new_message']))){
+            $chatModel->addMessage($uid,$friend_uid,trim($_POST['new_message']));
+            return refresh();
+        }
+        
         $chatInfo = $chatModel->getMessages($uid ,$friend_uid);
         //print_r($chatInfo);
         View::load('private_message', [

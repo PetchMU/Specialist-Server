@@ -22,7 +22,7 @@ class Database {
         $arr = [];
 
         $result = mysqli_query($this->conn, $sql);
-        if ($result && mysqli_num_rows($result) > 0) {
+        if ($result && @mysqli_num_rows($result) > 0) {
             // output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
                 $arr[] = $row;
