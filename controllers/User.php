@@ -22,18 +22,18 @@ class User {
         }
     }
 
-    function private_message($friend_uid) {        
+    function private_message($friend_uid) {
         Toolbar::showBackButton();
         MenuFooter::hide();
         $uid = userInfo('uid');
         $chatModel = Model::load('ChatModel');
-        
-        if(isset($_POST['new_message']) && !empty(trim($_POST['new_message']))){
-            $chatModel->addMessage($uid,$friend_uid,trim($_POST['new_message']));
+
+        if (isset($_POST['new_message']) && !empty(trim($_POST['new_message']))) {
+            $chatModel->addMessage($uid, $friend_uid, trim($_POST['new_message']));
             return refresh();
         }
-        
-        $chatInfo = $chatModel->getMessages($uid ,$friend_uid);
+
+        $chatInfo = $chatModel->getMessages($uid, $friend_uid);
         //print_r($chatInfo);
         View::load('private_message', [
             'chatInfo' => $chatInfo
@@ -73,6 +73,50 @@ class User {
             'status' => $status,
             'detail' => $status ? $r[0] : null
         ]);
+    }
+
+    function add($friend_uid) {
+        $db = Database::create();
+        $uid = userInfo('uid');
+        $fname = userInfo('fname');
+        $lname = userInfo('lname');
+
+        $r = $db->read("select * from friends where uid_send = $friend_uid and uid_recv = $uid");
+        if (empty($r)) {
+            $w = $db->write("
+            insert into friends 
+            set uid_send = $uid,
+                uid_recv = $friend_uid,
+                status = 1,
+                send_datetime = now()
+            ");
+            $w = $db->write("
+            insert into notification 
+            set uid = $friend_uid,
+                title = 'you have friend request',
+                description = '$fname $lname send friend request to you',
+                relate_id = $uid,
+                relate_type = 1,
+                status = 0
+            ");
+        }
+        elseif($r[0]['status']==1){
+            $w = $db->write("
+            insert into friends 
+            set uid_send = $uid,
+                uid_recv = $friend_uid,
+                status = 2,
+                send_datetime = now()
+            ");
+            $w = $db->write("
+            update friends 
+            set 
+                status = 2,
+                send_datetime = now()
+            where uid_send = $friend_uid and uid_recv = $uid
+            ");
+        }
+        redirect("/user/search");
     }
 
     static function mapper_user_list($data) {

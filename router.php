@@ -15,6 +15,8 @@ $router->any("/signup", "SignUp.main");
 $router->any("/user", "User.main");
 $router->any("/user/:num", "User.profile");
 $router->any("/user/:num/message", "User.private_message");
+$router->any("/user/:num/add", "User.add");
+$router->any("/user/search","Search.user");
 
 $router->any("/admin", "admin/Admin");
 
