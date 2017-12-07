@@ -97,10 +97,10 @@ class User {
                 description = '$fname $lname send friend request to you',
                 relate_id = $uid,
                 relate_type = 1,
-                status = 0
+                status = 0,
+                icon = 4
             ");
-        }
-        elseif($r[0]['status']==1){
+        } elseif ($r[0]['status'] == 1) {
             $w = $db->write("
             insert into friends 
             set uid_send = $uid,
@@ -114,6 +114,16 @@ class User {
                 status = 2,
                 send_datetime = now()
             where uid_send = $friend_uid and uid_recv = $uid
+            ");
+            $w = $db->write("
+            insert into notification 
+            set uid = $friend_uid,
+                title = 'friend request was accepted',
+                description = '$fname $lname is your friend now',
+                relate_id = $uid,
+                relate_type = 1,
+                status = 0,
+                icon = 4
             ");
         }
         redirect("/user/search");

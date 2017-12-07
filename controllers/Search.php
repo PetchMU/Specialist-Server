@@ -15,12 +15,17 @@ include 'User.php';
 class Search {
 
     function user() {
-        $keyword = Request::get('k');
+        $keyword = trim(Request::get('k', ''));
 
         $uid = userInfo('uid');
 
         $db = Database::create();
-        $match_user = $db->read("select * from Users where (fname like '%$keyword%' or lname like '%$keyword%') and uid != $uid");
+        if (empty($keyword)) {
+            $match_user = [];
+        } else {
+            $match_user = $db->read("select * from Users where (fname like '%$keyword%' or lname like '%$keyword%') and uid != $uid order by fname,lname");
+        }
+
 
         $my_friend = $db->read("select * from friends where uid_send = $uid");
         /*
@@ -39,6 +44,7 @@ class Search {
          */
 
         View::load('user_search', [
+            'keyword' => $keyword,
             'user_list' => $match_user,
             'status_list' => $friend_index
         ]);

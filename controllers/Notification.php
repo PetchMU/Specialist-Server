@@ -14,7 +14,7 @@
 class Notification{
     
     function main(){
-        echo 'yo Notification';
+        View::load('notification');
     }
     
 }

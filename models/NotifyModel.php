@@ -15,7 +15,11 @@ class NotifyModel {
     }
     
     function getUnseenCount(){
-        $count = 10;
+        $db = Database::create();
+        $uid = userInfo('uid');
+        $r = $db->read("select count(*) as c from notification where uid = $uid and status = 0");
+        
+        $count = $r[0]['c'];
         return $count < 100 ? $count : '99+';
     }
 }

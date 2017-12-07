@@ -15,7 +15,8 @@ include "header.php";
     <p>
         คุณยังไม่มีเพื่อนเลย ต้องการค้นหาเพื่อนไหม
     </p>
-    <a href="/user/search" class="waves-effect waves-light btn-large">Search</a>
+    <a href="/user/search" class="waves-effect waves-light btn-large"><i class="material-icons left">search</i>friend</a>
+    <a href="/group/search" class="waves-effect waves-light btn-large"><i class="material-icons left">search</i>group</a>
 </div>
 
 
