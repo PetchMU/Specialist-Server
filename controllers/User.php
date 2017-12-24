@@ -27,9 +27,11 @@ class User {
         MenuFooter::hide();
         $uid = userInfo('uid');
         $chatModel = Model::load('ChatModel');
+        $notiModel = Model::load('NotifyModel');
 
         if (isset($_POST['new_message']) && !empty(trim($_POST['new_message']))) {
             $chatModel->addMessage($uid, $friend_uid, trim($_POST['new_message']));
+            $notiModel->addFriendMessageNoti($friend_uid, trim($_POST['new_message']));
             return refresh();
         }
 
@@ -78,8 +80,7 @@ class User {
     function add($friend_uid) {
         $db = Database::create();
         $uid = userInfo('uid');
-        $fname = userInfo('fname');
-        $lname = userInfo('lname');
+        $noti_model = Model::load('NotifyModel');
 
         $r = $db->read("select * from friends where uid_send = $friend_uid and uid_recv = $uid");
         if (empty($r)) {
@@ -90,16 +91,7 @@ class User {
                 status = 1,
                 send_datetime = now()
             ");
-            $w = $db->write("
-            insert into notification 
-            set uid = $friend_uid,
-                title = 'you have friend request',
-                description = '$fname $lname send friend request to you',
-                relate_id = $uid,
-                relate_type = 1,
-                status = 0,
-                icon = 4
-            ");
+            $noti_model->addFriendRequestNoti($friend_uid);
         } elseif ($r[0]['status'] == 1) {
             $w = $db->write("
             insert into friends 
@@ -115,16 +107,7 @@ class User {
                 send_datetime = now()
             where uid_send = $friend_uid and uid_recv = $uid
             ");
-            $w = $db->write("
-            insert into notification 
-            set uid = $friend_uid,
-                title = 'friend request was accepted',
-                description = '$fname $lname is your friend now',
-                relate_id = $uid,
-                relate_type = 1,
-                status = 0,
-                icon = 4
-            ");
+            $noti_model->addFriendAcceptNoti($friend_uid);
         }
         redirect("/user/search");
     }

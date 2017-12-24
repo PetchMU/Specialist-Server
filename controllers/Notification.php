@@ -11,10 +11,23 @@
  *
  * @author Kreangkrai
  */
-class Notification{
+class Notification {
     
-    function main(){
-        View::load('notification');
+    const MAX_NOTI_DISPLAY = 20;
+
+    function main() {
+
+        $model = Model::load('NotifyModel');
+        $noti_list = $model->getAll();
+        if (count($noti_list) > self::MAX_NOTI_DISPLAY) {
+            $noti_list = array_slice($noti_list, 0, self::MAX_NOTI_DISPLAY);
+        }
+        
+        $model->seenAll(); 
+
+        View::load('notification',[
+            'noti_list' => $noti_list
+        ]);
     }
-    
+
 }
