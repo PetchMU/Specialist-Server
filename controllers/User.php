@@ -13,11 +13,19 @@ class User {
     function profile($userid) {
         $userModel = Model::load('UserModel');
         $userInfo = $userModel->getUserInfoById($userid);
+        
+        $friendModel = Model::load('FriendModel');
+        $uid = userInfo('uid');
+        $status = $friendModel->isFriend($uid,$userid);
+        
         if ($userInfo == null) {
             View::load('profile_not_found');
         } else {
             View::load('profile', [
-                'userInfo' => $userInfo
+                'userInfo' => $userInfo,
+                'can_add_friend' => $status == 'not-friend',
+                'can_accept_or_deny' => $status == 'has-request',
+                'waiting_for_accept' => $status == 'waiting'
             ]);
         }
     }
@@ -109,7 +117,19 @@ class User {
             ");
             $noti_model->addFriendAcceptNoti($friend_uid);
         }
-        redirect("/user/search");
+        redirect("/user/$friend_uid");
+    }
+    
+    function deny($friend_uid){
+        $uid = userInfo('uid');
+        $db = Database::create();
+        $r = $db->write("
+            delete from friends 
+            where uid_send = $friend_uid and uid_recv = $uid
+            ");
+        
+        redirect('/user/'.$friend_uid);
+        
     }
 
     static function mapper_user_list($data) {

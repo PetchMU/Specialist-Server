@@ -34,7 +34,7 @@ class NotifyModel {
     function seenAll() {
         $db = Database::create();
         $uid = userInfo('uid');
-        $r = $db->write("update notification set status = 1 where uid = $uid");
+        $r = $db->write("update notification set status = 1 where uid = $uid and status = 0");
     }
     function read($nid){
         $db = Database::create();
@@ -93,6 +93,13 @@ class NotifyModel {
         if(strlen($message) > 20){
             $message = substr($message, 0,20)."...";
         }
+        
+        $d = $db->write("
+            delete from notification
+            where uid =$friend_uid
+                and relate_id = $uid
+                and icon = 2
+            ");
 
         $w = $db->write("
             insert into notification 
@@ -102,7 +109,8 @@ class NotifyModel {
                 relate_id = $uid,
                 relate_type = 1,
                 status = 0,
-                icon = 2
+                icon = 2,
+                create_at = now()
             ");
     }
 

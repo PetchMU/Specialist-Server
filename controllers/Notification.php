@@ -29,5 +29,16 @@ class Notification {
             'noti_list' => $noti_list
         ]);
     }
+    
+    function read($nid){
+        $model = Model::load('NotifyModel');
+        $model->read($nid);
+        if(isset($_GET['next'])){
+            redirect($_GET['next']);
+        }
+        else{
+            redirect('/notification');
+        }
+    }
 
 }

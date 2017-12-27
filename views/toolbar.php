@@ -1,5 +1,5 @@
 
-<div class="row blue darken-1" style="min-height: 40px; margin-bottom: 0; position: fixed; z-index: 1; width: 100%">
+<div class="row blue darken-1" style="min-height: 40px; margin-bottom: 0; position: fixed; z-index: 100; width: 100%">
     <div class="col s1" style="position: absolute">
         <?php if( !$show_back): ?>
         <a href="#" data-activates="slide-out" class="button-collapse">

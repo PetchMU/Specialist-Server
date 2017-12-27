@@ -16,6 +16,7 @@ $router->any("/user", "User.main");
 $router->any("/user/:num", "User.profile");
 $router->any("/user/:num/message", "User.private_message");
 $router->any("/user/:num/add", "User.add");
+$router->any("/user/:num/deny", "User.deny");
 $router->any("/user/search","Search.user");
 
 $router->any("/admin", "admin/Admin");
@@ -26,3 +27,4 @@ $router->any("/group", "Group.main");
 
 
 $router->any("/notification", "Notification.main");
+$router->any("/notification/:num/read", "Notification.read");

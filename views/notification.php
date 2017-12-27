@@ -29,12 +29,13 @@ function getNotiIcon($icon) {
 }
 
 function getNotiLink($noti) {
-    if($noti['relate_type'] == 1 && $noti['icon'] == 2)        
-        return '/user/'.$noti['relate_id'].'/message';
-    if($noti['relate_type'] == 1)        
-        return '/user/'.$noti['relate_id'];
-    if($noti['relate_type'] == 2)        
-        return '/group/'.$noti['relate_id'];
+    $base = '/notification/' . $noti['nid'] . '/read?next=';
+    if ($noti['relate_type'] == 1 && $noti['icon'] == 2)
+        return $base . '/user/' . $noti['relate_id'] . '/message';
+    if ($noti['relate_type'] == 1)
+        return $base . '/user/' . $noti['relate_id'];
+    if ($noti['relate_type'] == 2)
+        return $base . '/group/' . $noti['relate_id'];
 }
 ?>
 
