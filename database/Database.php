@@ -15,6 +15,7 @@ class Database {
 
         // Create connection
         $this->conn = mysqli_connect($servername, $username, $password, "speciali_main");
+        mysqli_set_charset($this->conn, "utf8");
     }
 
     function read($sql) {
