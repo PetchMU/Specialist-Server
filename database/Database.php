@@ -41,5 +41,8 @@ class Database {
     function insertId() {
         return intval(mysqli_insert_id($this->conn));
     }
+    function realEscapeString($s){
+        return mysqli_real_escape_string($this->conn,$s);
 
+    }
 }

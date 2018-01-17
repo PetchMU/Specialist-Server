@@ -78,10 +78,31 @@ class NotifyModel {
             ");
     }
 
-    function addGroupNoti() {
+    function addGroupNoti($gid) {
         $db = Database::create();
         $uid = userInfo('uid');
-        //
+        $sender_name= userInfo('fname');
+        
+        $model = Model::load('GroupModel');
+        $members = $model->getAllMembers($gid);
+        $group = $model->get($gid);
+        
+        foreach ($members as $member){
+            if($uid == $member['uid']){
+                continue;
+            }
+            $db->write("
+                INSERT INTO notification
+                SET
+                    uid = {$member['uid']},
+                    title = 'you have new notice',
+                    description = '$sender_name add notice to {$group['name']}',
+                    relate_id = $uid,
+                    status = 0,
+                    icon = 1,
+                    create_at = now()
+                ");
+        }
     }
 
     function addFriendMessageNoti($friend_uid,$message) {

@@ -10,7 +10,7 @@ $router->any("/welcome", "Welcome.main", true);
 
 $router->any("/login", "Login.main", true);
 $router->any("/logout", "Logout.main", true);
-$router->any("/signup", "SignUp.main");
+$router->any("/signup", "SignUp.main", true);
 
 $router->any("/user", "User.main");
 $router->any("/user/:num", "User.profile");
@@ -25,6 +25,11 @@ $router->any("/admin", "admin/Admin");
 
 $router->any("/group", "Group.main");
 $router->any("/group/:num", "Group.home");
+$router->any("/group/:num/readmore", "Group.readmore");
+$router->any("/group/:num/member", "Group.member");
+$router->any("/group/:num/addnotice", "Group.addNotice");
+
+
 
 
 
