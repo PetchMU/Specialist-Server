@@ -12,31 +12,30 @@
  * @author Kreangkrai
  */
 class Notification {
-    
+
     const MAX_NOTI_DISPLAY = 20;
 
     function main() {
-
+        Toolbar::hideBackButton();
         $model = Model::load('NotifyModel');
         $noti_list = $model->getAll();
         if (count($noti_list) > self::MAX_NOTI_DISPLAY) {
             $noti_list = array_slice($noti_list, 0, self::MAX_NOTI_DISPLAY);
         }
-        
-        $model->seenAll(); 
 
-        View::load('notification',[
+        $model->seenAll();
+
+        View::load('notification', [
             'noti_list' => $noti_list
         ]);
     }
-    
-    function read($nid){
+
+    function read($nid) {
         $model = Model::load('NotifyModel');
         $model->read($nid);
-        if(isset($_GET['next'])){
+        if (isset($_GET['next'])) {
             redirect($_GET['next']);
-        }
-        else{
+        } else {
             redirect('/notification');
         }
     }

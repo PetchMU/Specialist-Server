@@ -49,5 +49,41 @@ class Search {
             'status_list' => $friend_index
         ]);
     }
+   
+    function group() {
+        $keyword = trim(Request::get('k', ''));
+
+        $uid = userInfo('uid');
+
+        $db = Database::create();
+        if (empty($keyword)) {
+            $match_user = [];
+        } else {
+            $match_user = $db->read("select * from Groups where (name like '%$keyword%')");
+        }
+
+
+        $my_friend = $db->read("select * from friends where uid_send = $uid");
+        /*
+         * [
+         *  0 => [1,2,done]
+         * ]
+         */
+        $friend_index = [];
+        foreach ($my_friend as $f) {
+            $friend_index[$f['uid_recv']] = $f['status'];
+        }
+        /*
+         * [
+         *  21 => done
+         * ]
+         */
+
+        View::load('user_search', [
+            'keyword' => $keyword,
+            'user_list' => $match_user,
+            'status_list' => $friend_index
+        ]);
+    }
 
 }

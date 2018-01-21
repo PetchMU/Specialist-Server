@@ -3,6 +3,15 @@ include "header.php";
 ?>
 
 <div class="container">
+    <?php if($waiting_people>0) :?>
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="collection">
+                <a href="/group/<?=$gid?>/allow" class="collection-item"><span class="badge"><?=$waiting_people?></span>Some people want to join this group</a>
+            </div>
+        </div>
+    </div>
+    <?php endif ;?>
     <div class="row">
         <div class="col s12 m12">
             <div class="fixed-action-btn">

@@ -28,6 +28,8 @@ $router->any("/group/:num", "Group.home");
 $router->any("/group/:num/readmore", "Group.readmore");
 $router->any("/group/:num/member", "Group.member");
 $router->any("/group/:num/addnotice", "Group.addNotice");
+$router->any("/group/:num/join", "Group.addJoin");
+$router->any("/group/:num/allow", "Group.allowing");
 
 
 

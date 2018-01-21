@@ -6,7 +6,8 @@ class GroupModel {
         $db = Database::create();
         return $r = $db->read("SELECT * FROM `Groups` ORDER BY name");
     }
-    function get($gid){
+
+    function get($gid) {
         $db = Database::create();
         $r = $db->read("SELECT * FROM `Groups` WHERE gid = $gid");
         //print_r($r);
@@ -14,20 +15,48 @@ class GroupModel {
         return empty($r) ? NULL : $r[0];
     }
 
-    function joinedBy($uid) {
+    function joinedBy($uid, $parent_gid = 0) {
         //SELECT * FROM Groups join joins on Groups.gid = joins.gid WHERE uid = 20
         $db = Database::create();
         return $r = $db->read(" 
             SELECT *
             FROM Groups
-            WHERE gid IN(
-                SELECT gid
-                FROM joins
-                WHERE uid = $uid
-            )
+            WHERE parent_gid = $parent_gid and
+                gid IN(
+                    SELECT gid
+                    FROM joins
+                    WHERE uid = $uid
+                )
             ORDER BY name");
     }
 
+    function hasSubGroup($gid) {
+        $db = Database::create();
+        $r = $db->read("
+            SELECT *
+            FROM Groups
+            WHERE parent_gid = $gid
+            
+            ");
+        return count($r)>0;
+    }
+    
+    function getAccessStatus($uid, $gid){
+        $db = Database::create();
+        $r = $db->read("
+            SELECT *
+            FROM joins
+            WHERE uid = $uid and gid = $gid           
+            ");
+        if(empty($r)){
+            return 'not_join';
+        }
+        if($r[0]['status'] == 0){
+            return 'waiting';
+        }
+        return 'joined';
+    }
+    
     function getGroupMessage($gid) {
         $db = Database::create();
         return $r = $db->read("
@@ -57,7 +86,60 @@ class GroupModel {
             INSERT INTO chats(uid, relate_id, topic, message, relate_type, chat_datetime)
             VALUES ($uid, $gid, '$topic', '$message', 2, now())
             ");
-        
     }
-
+    
+    function userWillJoin($uid, $gid, $iid = 0){
+         $db = Database::create();
+         $w = $db->write("
+             REPLACE INTO joins(uid, gid, join_date, iid, status)
+             VALUES ($uid, $gid, now(), $iid, 0)
+             ");
+         
+         if($iid){
+             $this->userJoined($uid, $gid);
+         }
+    }
+    
+    function userJoined($uid, $gid){
+        $db = Database::create();
+         $w = $db->write("
+             UPDATE joins
+             SET status = 1,
+                join_date = now()
+             WHERE uid = $uid and gid = $gid
+             ");
+    }
+    
+    function userDeny($uid, $gid){
+        $db = Database::create();
+         $w = $db->write("
+             DELETE FROM joins
+             WHERE uid = $uid and gid = $gid
+             ");
+    }
+    
+    function getTotalWantToJoin($gid){
+        $db = Database::create();
+        $r = $db->read("
+            SELECT *
+            FROM joins
+            WHERE gid = $gid and status = 0
+            ");
+        return count($r);
+    }
+    
+    function getWantToJoin($gid){
+        $db = Database::create();
+        $r = $db->read("
+            SELECT *
+            FROM Users 
+            WHERE uid IN(
+                SELECT uid
+                FROM joins
+                WHERE gid = $gid and status = 0
+                )
+            ");
+        return $r;
+    }
+    
 }

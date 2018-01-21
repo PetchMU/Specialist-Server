@@ -97,9 +97,10 @@ class NotifyModel {
                     uid = {$member['uid']},
                     title = 'you have new notice',
                     description = '$sender_name add notice to {$group['name']}',
-                    relate_id = $uid,
+                    relate_id = $gid,
                     status = 0,
                     icon = 1,
+                    relate_type = 2,
                     create_at = now()
                 ");
         }

@@ -13,10 +13,15 @@
  */
 class Group {
 
-    function main() {
+    function main($parent_gid = 0) {
+        
+        if($parent_gid == 0){
+            Toolbar::hideBackButton();
+        }
+        
         $model = Model::load('GroupModel');
         $uid = userInfo('uid');
-        $groups = $model->joinedBy($uid);
+        $groups = $model->joinedBy($uid, $parent_gid);
         if (!empty($groups)) {
             View::load('group', [
                 'groups' => $groups
@@ -28,6 +33,23 @@ class Group {
 
     function home($gid) {
         $model = Model::load('GroupModel');
+        $uid = userInfo('uid');
+        
+        if ($model->hasSubGroup($gid)) {
+            return $this->main($gid);
+        }
+        
+        switch($model->getAccessStatus($uid, $gid)){
+            case 'waiting':
+                return View::load('group_cannot_access');
+            case 'not_join':
+                return View::load('group_will_join', [
+                    'gid' => $gid
+                ]);
+            case 'joined':
+            default:
+        }
+
         $chats = $model->getGroupMessage($gid);
         $num = count($chats);
         $max = 4;
@@ -38,11 +60,14 @@ class Group {
         } else {
             $read_more = FALSE;
         }
+        
+        $waiting_people = $model->getTotalWantToJoin($gid);
 
         View::load('group_home', [
             'chats' => $chats,
             'read_more' => $read_more,
-            'gid' => $gid
+            'gid' => $gid,
+            'waiting_people' =>$waiting_people
         ]);
     }
 
@@ -65,22 +90,51 @@ class Group {
 
     function addNotice($gid) {
         if (isset($_POST['topic']) && isset($_POST['message'])) {
-            
+
             $model = Model::load('GroupModel');
             $uid = userInfo('uid');
             $topic = $_POST['topic'];
             $message = $_POST['message'];
             $model->addNotice($gid, $uid, $topic, $message);
-            
+
             Model::load('NotifyModel')->addGroupNoti($gid);
-            
+
             return redirect("/group/$gid");
-        } 
-        else {
+        } else {
             View::load('group_addnotice', [
                 'gid' => $gid
             ]);
         }
     }
+    
+    function addJoin($gid, $iid = 0){
+        $uid = userInfo('uid');
+        $model = Model::load('GroupModel');
+        $model->userWillJoin($uid, $gid, $iid);
+        redirect("/group/$gid");
+    }
+    
+    function allowing($gid){
+        $model = Model::load('GroupModel');
+        
+        if(isset($_GET['allow']) && $_GET['uid']){
+            if($_GET['allow'] == "accept"){
+                $model->userJoined($_GET['uid'], $gid);
+            }
+            else{
+                $model->userDeny($_GET['uid'], $gid);
+            }
+            return redirect("/group/$gid/allow");
+        }
+        
+        $users = $model->getWantToJoin($gid);
+        View::load('group_allowing',[
+            'users' => $users,
+            'gid' => $gid
+        ]);
+        
+    }
+    
+    
 
 }

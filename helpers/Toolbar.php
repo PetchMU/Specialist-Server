@@ -3,7 +3,7 @@
 class Toolbar {
 
     static $title = 'MindContact';
-    static $show_back = false;
+    static $show_back = TRUE;
 
     static function setTitle($title) {
         self::$title = $title;
@@ -11,6 +11,10 @@ class Toolbar {
     
     static function showBackButton(){
         self::$show_back = TRUE;
+    }
+    
+    static function hideBackButton(){
+        self::$show_back = FALSE;
     }
 
     static function display() {

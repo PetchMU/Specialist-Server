@@ -3,6 +3,8 @@
 class Home {
 
     function main() {
+        
+        Toolbar::hideBackButton();
         $userModel = Model::load('UserModel');
         
         if ($userModel->isLogin()) {
