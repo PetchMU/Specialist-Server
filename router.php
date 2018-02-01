@@ -14,6 +14,8 @@ $router->any("/signup", "SignUp.main", true);
 
 $router->any("/user", "User.main");
 $router->any("/user/:num", "User.profile");
+$router->any("/user/edit", "User.edit");
+$router->any("/user/:num/edit", "User.edit");
 $router->any("/user/:num/message", "User.private_message");
 $router->any("/user/:num/add", "User.add");
 $router->any("/user/:num/deny", "User.deny");

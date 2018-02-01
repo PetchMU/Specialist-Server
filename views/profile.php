@@ -7,26 +7,31 @@ include "header.php";
         <div class="col s12 m12">
 
             <div class="card">
-                
-                <?php if($can_add_friend): ?>
-                <div style="text-align: center;">
-                    <a href="/user/<?= $userInfo['uid']?>/add" class="waves-effect waves-light btn">add friend</a>
-                </div>
+                <?php if ($owner): ?>
+                    <div class="card-action">
+                        <a href="/user/<?= $userInfo['uid'] ?>/edit" class="right">Edit Profile</a>
+                    </div>
                 <?php endif; ?>
-                
-                <?php if($can_accept_or_deny): ?>
-                <div style="text-align: center;">
-                    <a href="/user/<?= $userInfo['uid']?>/add" class="waves-effect waves-light btn">accept</a>
-                    <a href="/user/<?= $userInfo['uid']?>/deny" class="waves-effect waves-light btn">deny</a>
-                </div>
+                <?php if (!$owner): ?>
+                    <?php if ($can_add_friend): ?>
+                        <div style="text-align: center;">
+                            <a href="/user/<?= $userInfo['uid'] ?>/add" class="waves-effect waves-light btn">add friend</a>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($can_accept_or_deny): ?>
+                        <div style="text-align: center;">
+                            <a href="/user/<?= $userInfo['uid'] ?>/add" class="waves-effect waves-light btn">accept</a>
+                            <a href="/user/<?= $userInfo['uid'] ?>/deny" class="waves-effect waves-light btn">deny</a>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($waiting_for_accept): ?>
+                        <div style="text-align: center;">
+                            'waiting for accept'
+                        </div>
+                    <?php endif; ?> 
                 <?php endif; ?>
-
-                <?php if($waiting_for_accept): ?>
-                <div style="text-align: center;">
-                    'waiting for accept'
-                </div>
-                <?php endif; ?> 
-
 
                 <div class="card-image">
                     <img src="<?= $userInfo['picture'] ?>">
@@ -40,9 +45,11 @@ include "header.php";
                     <h5>Email</h5>
                     <a href="mailto:<?= $userInfo['email'] ?>"><?= $userInfo['email'] ?></a>
                 </div>
-                <div class="card-action">
-                    <a href="/user/<?= $userInfo['uid'] ?>/message">Private Massage</a>
-                </div>
+                <?php if (!$owner): ?>
+                    <div class="card-action">
+                        <a href="/user/<?= $userInfo['uid'] ?>/message">Private Massage</a>
+                    </div>
+                <?php endif; ?>
             </div>
 
         </div>

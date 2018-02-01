@@ -3,6 +3,12 @@ include "header.php";
 ?>
 
 <div class="container">
+    <div class="row" style="margin-bottom: 0">
+            <div class="col s12 m12">
+                
+                <a href="/group/<?= $gid ?>/member" class="waves-effect waves-light btn right">member</a>
+            </div>
+        </div> 
     <?php if($waiting_people>0) :?>
     <div class="row">
         <div class="col s12 m12">
@@ -12,24 +18,10 @@ include "header.php";
         </div>
     </div>
     <?php endif ;?>
+    
     <div class="row">
         <div class="col s12 m12">
-            <div class="fixed-action-btn">
-                <a href="/group/<?=$gid?>/addnotice" class="btn-floating btn-large red">
-                    <i class="large material-icons">mode_edit</i>
-                </a>
-                <!--                <ul>
-                                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-                                </ul>-->
-            </div> 
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col s12 m12">
+            <h4>Announcement</h4>
             <ul class="collection">
                <?php $i=1;?>
                 <?php foreach ($chats as $chat): ?>
@@ -69,12 +61,28 @@ include "header.php";
     <?php if ($read_more): ?>
         <div class="row">
             <div class="col s12 m12">
-                <a href="/group/<?= $gid ?>/readmore" class="waves-effect waves-light btn">read more...</a>
-                <a href="/group/<?= $gid ?>/member" class="waves-effect waves-light btn">member</a>
+                <a href="/group/<?= $gid ?>/readmore" class="waves-effect waves-light btn right">read more...</a>
+                
             </div>
         </div> 
     <?php endif; ?>  
     <br/>
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="fixed-action-btn">
+                <a href="/group/<?=$gid?>/addnotice" class="btn-floating btn-large red">
+                    <i class="large material-icons">mode_edit</i>
+                </a>
+                <!--                <ul>
+                                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                                </ul>-->
+            </div> 
+        </div>
+
+    </div>
 </div>
 <?php
 include "footer.php";

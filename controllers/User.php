@@ -18,6 +18,13 @@ class User {
         $uid = userInfo('uid');
         $status = $friendModel->isFriend($uid,$userid);
         
+        if($userid == $uid){
+            $owner = TRUE;
+        }
+        else{
+            $owner = FALSE;
+        }
+        
         if ($userInfo == null) {
             View::load('profile_not_found');
         } else {
@@ -25,7 +32,8 @@ class User {
                 'userInfo' => $userInfo,
                 'can_add_friend' => $status == 'not-friend',
                 'can_accept_or_deny' => $status == 'has-request',
-                'waiting_for_accept' => $status == 'waiting'
+                'waiting_for_accept' => $status == 'waiting',
+                'owner' => $owner
             ]);
         }
     }
@@ -129,6 +137,12 @@ class User {
             ");
         
         redirect('/user/'.$friend_uid);
+        
+    }
+    
+    function edit($uid=NULL){
+        MenuFooter::hide();
+        View::load('profile_edit');
         
     }
 
