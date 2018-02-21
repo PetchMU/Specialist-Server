@@ -13,18 +13,17 @@ class User {
     function profile($userid) {
         $userModel = Model::load('UserModel');
         $userInfo = $userModel->getUserInfoById($userid);
-        
+
         $friendModel = Model::load('FriendModel');
         $uid = userInfo('uid');
-        $status = $friendModel->isFriend($uid,$userid);
-        
-        if($userid == $uid){
+        $status = $friendModel->isFriend($uid, $userid);
+
+        if ($userid == $uid) {
             $owner = TRUE;
-        }
-        else{
+        } else {
             $owner = FALSE;
         }
-        
+
         if ($userInfo == null) {
             View::load('profile_not_found');
         } else {
@@ -127,23 +126,41 @@ class User {
         }
         redirect("/user/$friend_uid");
     }
-    
-    function deny($friend_uid){
+
+    function deny($friend_uid) {
         $uid = userInfo('uid');
         $db = Database::create();
         $r = $db->write("
             delete from friends 
             where uid_send = $friend_uid and uid_recv = $uid
             ");
-        
-        redirect('/user/'.$friend_uid);
-        
+
+        redirect('/user/' . $friend_uid);
     }
-    
-    function edit($uid=NULL){
+
+    function edit($uid = NULL) {
         MenuFooter::hide();
-        View::load('profile_edit');
-        
+
+        if (isset($_POST) && $_POST) {
+            $model = Model::load('UserModel');
+            $uid = userInfo('uid');
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $dob = $_POST['dob'];
+            $phone = $_POST['phone'];
+            $model->edit($uid, $fname, $lname, $dob, $phone);
+
+            $update_done = TRUE;
+        } 
+        else {
+            $update_done = FALSE;
+        }
+
+        $user = userInfo();
+        View::load('profile_edit', [
+            'user' => $user,
+            'update_done' => $update_done
+        ]);
     }
 
     static function mapper_user_list($data) {

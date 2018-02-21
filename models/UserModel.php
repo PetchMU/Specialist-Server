@@ -92,4 +92,38 @@ class UserModel {
         return self::REGISTER_OK;
     }
 
+    function edit($uid, $fname = null, $lname = null, $dob = null, $phone = null) {
+        $db = Database::create();
+        if($fname == null && $lname == null && $dob == null && $phone == null){
+            return;
+        }
+        $statement = [];
+        if($fname){
+            $statement[] = "fname = '$fname'";
+            $_SESSION['user']['fname'] = $fname;
+        }
+        if($lname){
+            $statement[] = "lname = '$lname'";
+            $_SESSION['user']['lname'] = $lname;
+        }
+        if($dob){
+            $dob = date('Y-m-d',strtotime($dob));
+            $statement[] = "dob = '$dob'";
+            $_SESSION['user']['dob'] = $dob;
+        }
+        if($phone){
+            $statement[] = "phone = '$phone'";
+            $_SESSION['user']['phone'] = $phone;
+        }
+        
+        
+        
+        $statement_sql = implode(',', $statement);
+        $w = $db->write("
+            update Users set 
+                $statement_sql
+            where  uid  = $uid"
+        );
+    }
+
 }
