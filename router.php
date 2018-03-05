@@ -32,6 +32,9 @@ $router->any("/group/:num/member", "Group.member");
 $router->any("/group/:num/addnotice", "Group.addNotice");
 $router->any("/group/:num/join", "Group.addJoin");
 $router->any("/group/:num/allow", "Group.allowing");
+$router->any("/group/search", "Search.group");
+$router->any("/group/create", "Group.create");
+$router->any("/group/:num/edit", "Group.edit");
 
 
 

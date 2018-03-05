@@ -53,37 +53,18 @@ class Search {
     function group() {
         $keyword = trim(Request::get('k', ''));
 
-        $uid = userInfo('uid');
-
         $db = Database::create();
         if (empty($keyword)) {
-            $match_user = [];
+            $match_group = [];
         } else {
-            $match_user = $db->read("select * from Groups where (name like '%$keyword%')");
+            $match_group = $db->read("select * from Groups where (name like '%$keyword%') and parent_gid=0");
         }
-
-
-        $my_friend = $db->read("select * from friends where uid_send = $uid");
-        /*
-         * [
-         *  0 => [1,2,done]
-         * ]
-         */
-        $friend_index = [];
-        foreach ($my_friend as $f) {
-            $friend_index[$f['uid_recv']] = $f['status'];
-        }
-        /*
-         * [
-         *  21 => done
-         * ]
-         */
-
-        View::load('user_search', [
-            'keyword' => $keyword,
-            'user_list' => $match_user,
-            'status_list' => $friend_index
+        
+        View::load('group_search',[
+            'group_list' => $match_group,
+            'keyword' => $keyword
         ]);
+        
     }
 
 }

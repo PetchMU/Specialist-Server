@@ -4,8 +4,10 @@ include "header.php";
 
 <div class="container">
     <div class="row">
-      <div class="col s6">1</div>
-      <div class="col s6">2</div>
+        <div class="col s12 center">
+            <a href="/group/create?parent_gid=<?=$parent_gid?>" class="waves-effect waves-light btn"><i class="material-icons left">account_box</i>Create Group</a>
+            <a href="/group/search" class="waves-effect waves-light btn"><i class="material-icons left">search</i>Search</a>
+        </div>
     </div>
     <div class="row">
         <?php foreach ($groups as $group): ?>

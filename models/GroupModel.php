@@ -2,6 +2,22 @@
 
 class GroupModel {
 
+    function create($group_name,$parent_gid,$uid){
+        $db = Database::create();
+        $w = $db ->write("
+            INSERT INTO Groups
+            set name = '$group_name',
+                picture = '/res/images/group_thumbnail/1.jpg',
+                parent_gid = $parent_gid,
+                description = '',
+                create_date = now()
+            ");
+        $gid = $db->insertId();
+        $this->userWillJoin($uid, $gid);
+        $this->userJoined($uid, $gid);
+        return $gid;
+    }
+    
     function getAll() {
         $db = Database::create();
         return $r = $db->read("SELECT * FROM `Groups` ORDER BY name");

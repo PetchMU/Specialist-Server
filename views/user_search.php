@@ -36,7 +36,7 @@ function hilight($str,$hilight_word){
     <div class="row">
         <div class="col s12 m12">
             <ul class="collection">
-                <?php if (empty($user_list)): ?>
+                <?php if (empty($user_list) && $keyword): ?>
                     <blockquote>
                         <b>"<?=$keyword?>"</b> not match with any user account 
                     </blockquote>
