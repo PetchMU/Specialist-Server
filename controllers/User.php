@@ -60,7 +60,7 @@ class User {
     function listAll() {
 
         $page = Request::get("page", 1);
-        $limit = 50;
+        $limit = 1000;
         $offset = (max(1, $page) - 1) * $limit;
 
         $db = Database::create();
@@ -70,11 +70,10 @@ class User {
 
         $r = array_map([User::class, 'mapper_user_list'], $r);
 
-        Response::json([
-            'status' => true,
+        View::load('user_list', [
             'total' => $total,
-            'total_page' => ceil($total / $limit),
-            'list' => $r
+            //'total_page' => ceil($total / $limit),
+            'friend_list' => $r
         ]);
     }
 

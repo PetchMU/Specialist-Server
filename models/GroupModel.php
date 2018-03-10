@@ -104,6 +104,16 @@ class GroupModel {
             ");
     }
     
+    function addNotiiceAllGroup($uid, $topic, $message){
+        $groups = $this->getAll();
+        $i = 0;
+        foreach ($groups as $group){
+            $this->addNotice($group['gid'], $uid, $topic, $message);
+            $i++;
+        }
+        return $i;
+    }
+            
     function userWillJoin($uid, $gid, $iid = 0){
          $db = Database::create();
          $w = $db->write("

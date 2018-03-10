@@ -20,8 +20,10 @@ $router->any("/user/:num/message", "User.private_message");
 $router->any("/user/:num/add", "User.add");
 $router->any("/user/:num/deny", "User.deny");
 $router->any("/user/search","Search.user");
+$router->any("/user/list","User.listAll");
 
-$router->any("/admin", "admin/Admin");
+$router->any("/admin/console", "admin/Admin.console");
+$router->any("/admin/console/add_notice_to_all_group", "admin/Admin.add_notice_to_all_group");
 
 
 

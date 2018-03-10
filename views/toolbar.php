@@ -39,6 +39,9 @@
                     </ul>
                 </li>
                 <li><a href="/group">My group</a></li>
+                <?php if(isAdmin()):?>
+                <li><a href="/admin/console">Admin</a></li>
+                <?php endif;?>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         <?php else: ?>

@@ -3,19 +3,21 @@
 class Home {
 
     function main() {
-        
+
         Toolbar::hideBackButton();
         $userModel = Model::load('UserModel');
-        
+
         if ($userModel->isLogin()) {
-            
+
             $friendModel = Model::load('FriendModel');
-            
-            View::load('home', [
-                'friend_list' => $friendModel->getAll()
+            $user = userInfo();
+            /* View::load('home', [
+              'friend_list' => $friendModel->getAll()
+              ]); */
+            View::load('home2',[
+                'user' => $user
             ]);
-        }
-        else{
+        } else {
             redirect('/welcome');
         }
     }

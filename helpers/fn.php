@@ -12,6 +12,14 @@ function isLogin(){
     return Model::load('UserModel')->isLogin();
 }
 
+function isAdmin(){
+    if(!isLogin()){
+        return FALSE;
+    }
+    
+    return userInfo('user_type') == "admin";
+}
+
 function checkAuthenticationOrGoHome(){
     if(!isLogin()){
         return redirect("/");

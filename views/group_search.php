@@ -16,7 +16,7 @@ include "header.php";
         <div class="row">
 
             <div class="input-field col s12">
-                <input placeholder="Find your friend" id="k" type="text" name="k" class="validate" value="<?= $keyword ?>">
+                <input placeholder="Find your group" id="k" type="text" name="k" class="validate" value="<?= $keyword ?>">
                 <label for="k">Search</label>
             </div>
             <div class="col s12">

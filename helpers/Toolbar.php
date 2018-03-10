@@ -33,7 +33,8 @@ class Toolbar {
         View::load('toolbar', [
             'title' => self::$title,
             'user_info' => $user_info,
-            'show_back' => self::$show_back
+            'show_back' => self::$show_back,
+            'is_admin' => isAdmin()
         ]);
     }
 
