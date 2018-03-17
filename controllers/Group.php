@@ -85,7 +85,8 @@ class Group {
         $members = $model->getAllMembers($gid);
         View::load('group_member', [
             'members' => $members,
-            'total' => count($members)
+            'total' => count($members),
+            'gid' => $gid
         ]);
     }
 
@@ -155,6 +156,10 @@ class Group {
         View::load('group_edit',[
             'group' => $group
         ]);
+    }
+    
+    function reject($gid, $uid_rejected){
+        
     }
 
 }

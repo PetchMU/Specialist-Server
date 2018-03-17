@@ -104,11 +104,20 @@ class GroupModel {
             ");
     }
     
-    function addNotiiceAllGroup($uid, $topic, $message){
+    function addNoticeAllGroup($uid, $topic, $message){
         $groups = $this->getAll();
         $i = 0;
         foreach ($groups as $group){
             $this->addNotice($group['gid'], $uid, $topic, $message);
+            $i++;
+        }
+        return $i;
+    }
+    
+    function addNoticeGroup($uid, $topic, $message, $gids){
+        $i = 0;
+        foreach ($gids as $gid){
+            $this->addNotice($gid, $uid, $topic, $message);
             $i++;
         }
         return $i;
@@ -168,4 +177,31 @@ class GroupModel {
         return $r;
     }
     
+    function getGroupHierarchy(){
+        $db = Database::create();
+        $root_group = $db->read("
+            SELECT *
+            FROM Groups
+            WHERE parent_gid = 0
+            ");
+        foreach ($root_group as $i => $root){
+            $root_group[$i]['sub'] = $this->mergeSubGroup($root);
+        }
+        return $root_group;
+    }
+    
+    private function mergeSubGroup($group){
+        $db = Database::create();
+        $sub_group = $db->read("
+            SELECT *
+            FROM Groups 
+            WHERE parent_gid = {$group['gid']}
+            ");
+        foreach($sub_group as $i => $sub){
+            if($sub['parent_gid'] > 0){
+                $sub_group[$i]['sub'] = $this->mergeSubGroup($sub);
+            }
+        }
+        return $sub_group;
+    }
 }
