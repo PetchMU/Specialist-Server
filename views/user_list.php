@@ -6,7 +6,7 @@ include "header.php";
     <div class="row">
         <div class="col s12 m12">
             <p>
-                you have <?=$total?> friends
+                you have <?=$total?> friends | <a href="/user/sendallmessage"> Send message to friends </a>
             </p>
             <ul class="collection">
                 <?php foreach ($friend_list as $friend): ?>

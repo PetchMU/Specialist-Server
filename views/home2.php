@@ -3,10 +3,14 @@ include "header.php";
 ?>
 <style>
     .home-menu{
-        /*border: 1px solid #5df;*/
+        border: 1px solid #eee;
         background: #fafafa;
-        padding: 10px 0 !important;
+        padding: 0px 0 !important;
         text-align: center;
+        
+    }
+    .home-menu img{
+        width: 100%;
     }
     .home-menu h3{
         color: black !important;
@@ -30,38 +34,38 @@ include "header.php";
         </div>
 
     </div>
-    <div class="row">
+<div class="row">
         <a href="/user/<?= $user['uid'] ?>" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Profile</h3>
+            <img src="/res/images/icon/user_profile.jpg"/>
+            <!--<h3>Profile</h3>-->
         </a>
         <a href="/user/list" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Contact</h3>
+            <img src="/res/images/icon/contact.jpg"/>
+            <!--<h3>Contact</h3>-->
         </a>
         <a href="/group" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Group</h3>
+            <img src="/res/images/icon/group.jpg"/>
+            <!--<h3>Group</h3>-->
         </a>
         <a href="/notification" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>notification</h3>
+            <img src="/res/images/icon/notification.jpg"/>
+            <!--<h3>notification</h3>-->
         </a>
         <a href="/user/search" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Search friend</h3>
+            <img src="/res/images/icon/search_friend.jpg"/>
+            <!--<h3>Search friend</h3>-->
         </a>
         <a href="/group/search" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Search Group</h3>
+            <img src="/res/images/icon/search_group.jpg"/>
+           <!--<h3>Search Group</h3>-->
         </a>
         <a href="#" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Event</h3>
+            <img src="/res/images/icon/event.jpg"/>
+            <!--<h3>Event</h3>-->
         </a>
         <a href="#" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.png"/>
-            <h3>Reminder</h3>
+            <img src="/res/images/icon/reminder.jpg"/>
+            <!--<h3>Reminder</h3>-->
         </a>
 
     </div>

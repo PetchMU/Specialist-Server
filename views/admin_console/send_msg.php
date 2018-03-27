@@ -2,7 +2,7 @@
 
 <!--post to every group-->
 
-<div class="collapsible-header"><i class="material-icons">filter_drama</i>Send message to all group</div>
+<div class="collapsible-header"><i class="material-icons">message</i>Send message to all group</div>
 <div class="collapsible-body">
     <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
     <form method="post" action="/admin/console/add_notice_to_all_group">

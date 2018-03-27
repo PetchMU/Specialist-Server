@@ -86,7 +86,8 @@ class Group {
         View::load('group_member', [
             'members' => $members,
             'total' => count($members),
-            'gid' => $gid
+            'gid' => $gid,
+            'rejectsend' => isset($_GET['sent'])
         ]);
     }
 
@@ -159,7 +160,13 @@ class Group {
     }
     
     function reject($gid, $uid_rejected){
+        $reason = $_POST['reason'];
+        $uid_rejector = userInfo('uid');
+        $model = Model::load('RejectionModel');
+        $model->submit($uid_rejector, $uid_rejected, $gid, $reason);
         
+        redirect("/group/$gid/member?sent");
+                
     }
 
 }

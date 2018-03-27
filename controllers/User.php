@@ -59,21 +59,23 @@ class User {
 
     function listAll() {
 
-        $page = Request::get("page", 1);
-        $limit = 1000;
-        $offset = (max(1, $page) - 1) * $limit;
-
-        $db = Database::create();
-        $r = $db->read("select * from Users limit $offset, $limit");
-        $c = $db->read("select count(*) as c from Users");
-        $total = intval($c[0]['c']);
-
-        $r = array_map([User::class, 'mapper_user_list'], $r);
+        //$page = Request::get("page", 1);
+        //$limit = 1000;
+        //$offset = (max(1, $page) - 1) * $limit;
+        $uid = userInfo('uid');
+        $model = Model::load('FriendModel');
+        $friends = $model->getAll($uid);
+//        $db = Database::create();
+//        $r = $db->read("select * from Users limit $offset, $limit");
+//        $c = $db->read("select count(*) as c from Users");
+//        $total = intval($c[0]['c']);
+//
+//        $r = array_map([User::class, 'mapper_user_list'], $r);
 
         View::load('user_list', [
-            'total' => $total,
+            'total' => count($friends),
             //'total_page' => ceil($total / $limit),
-            'friend_list' => $r
+            'friend_list' => $friends
         ]);
     }
 
@@ -150,8 +152,7 @@ class User {
             $model->edit($uid, $fname, $lname, $dob, $phone);
 
             $update_done = TRUE;
-        } 
-        else {
+        } else {
             $update_done = FALSE;
         }
 
@@ -159,6 +160,33 @@ class User {
         View::load('profile_edit', [
             'user' => $user,
             'update_done' => $update_done
+        ]);
+    }
+
+    function selectSendAllMessage() {
+        $messagesend = FALSE;
+        
+        if (isset($_POST['message']) && isset($_POST['uids'])) {
+            $uid = userInfo('uid');
+            $message = $_POST['message'];
+            $friend_uids = $_POST['uids'];
+            $model = Model::load('ChatModel');
+
+            foreach ($friend_uids as $friend_uid) {
+                $model->addMessage($uid, $friend_uid, $message);
+                $messagesend = true;
+            }
+        }
+
+        $uid = userInfo('uid');
+        $model = Model::load('FriendModel');
+        $friends = $model->getAll($uid);
+
+
+        View::load('user_all_message', [
+            'total' => count($friends),
+            'friend_list' => $friends,
+            'messagesend' => $messagesend
         ]);
     }
 

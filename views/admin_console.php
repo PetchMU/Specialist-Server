@@ -20,8 +20,7 @@ include "header.php";
         <!---->
         
         <li>
-            <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <?php include 'admin_console/reject.php';?>
         </li>
         <li>
             <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>

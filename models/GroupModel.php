@@ -145,6 +145,15 @@ class GroupModel {
              ");
     }
     
+    function userUnjoin($uid, $gid){
+        
+        $db = Database::create();
+        $w = $db->write("
+            DELETE FROM joins
+            WHERE uid = $uid and gid = $gid
+            ");
+    }
+            
     function userDeny($uid, $gid){
         $db = Database::create();
          $w = $db->write("
