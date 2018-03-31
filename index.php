@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 
 session_start();
 
+define("THUMB_FLODER", '/res/images/thumbnail');
+define("THUMB_PATH", __DIR__ . THUMB_FLODER);
+
 include 'helpers/Router.php';
 include 'helpers/Response.php';
 include 'helpers/Request.php';

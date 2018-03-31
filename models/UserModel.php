@@ -94,36 +94,47 @@ class UserModel {
 
     function edit($uid, $fname = null, $lname = null, $dob = null, $phone = null) {
         $db = Database::create();
-        if($fname == null && $lname == null && $dob == null && $phone == null){
+        if ($fname == null && $lname == null && $dob == null && $phone == null) {
             return;
         }
         $statement = [];
-        if($fname){
+        if ($fname) {
             $statement[] = "fname = '$fname'";
             $_SESSION['user']['fname'] = $fname;
         }
-        if($lname){
+        if ($lname) {
             $statement[] = "lname = '$lname'";
             $_SESSION['user']['lname'] = $lname;
         }
-        if($dob){
-            $dob = date('Y-m-d',strtotime($dob));
+        if ($dob) {
+            $dob = date('Y-m-d', strtotime($dob));
             $statement[] = "dob = '$dob'";
             $_SESSION['user']['dob'] = $dob;
         }
-        if($phone){
+        if ($phone) {
             $statement[] = "phone = '$phone'";
             $_SESSION['user']['phone'] = $phone;
         }
-        
-        
-        
+
+
+
         $statement_sql = implode(',', $statement);
         $w = $db->write("
             update Users set 
                 $statement_sql
             where  uid  = $uid"
         );
+    }
+
+    function changePicture($uid, $picture) {
+        $db = Database::create();
+        $w = $db->write("
+            UPDATE Users
+            set picture = '$picture'
+                where uid = $uid
+           ");
+        $_SESSION['user']['picture'] = $picture;
+                
     }
 
 }

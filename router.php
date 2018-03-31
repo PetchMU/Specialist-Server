@@ -42,7 +42,7 @@ $router->any("/group/create", "Group.create");
 $router->any("/group/:num/edit", "Group.edit");
 $router->any("/group/:num/member/:num/reject", "Group.reject");
 
-
+$router->any("/event", "Event.main");
 
 
 

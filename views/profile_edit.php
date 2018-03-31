@@ -5,12 +5,12 @@ include "header.php";
 
 <div class="container">
     <div class="row">
-        <?php if($update_done) :?>
-        <ul class="collection">
-            <li class="collection-item light-green lighten-4" >update done</li>
-        </ul>
+        <?php if ($update_done) : ?>
+            <ul class="collection">
+                <li class="collection-item light-green lighten-4" >update done</li>
+            </ul>
         <?php endif; ?>
-        <form method="post" class="col s12 m12">
+        <form method="post" enctype="multipart/form-data" class="col s12 m12">
             <h4>Edit Profile</h4>
             <div class="row">
                 <div class="input-field col s12">
@@ -27,6 +27,13 @@ include "header.php";
                 <div class="input-field col s12">
                     <input placeholder="ex. 081-234-5678" id="phone number" type="text" class="validate" name="phone" value="<?= $user['phone'] ?>">
                     <label for="phonne number">Phone Number</label>
+                </div>
+
+
+
+                <div class="input-field col s12">
+                    <input placeholder="" id="upload" type="file" class="validate" name="picture"><br>
+                    <label style="position: relative" for="upload">Uplode your avatar</label>
                 </div>
             </div>
             <button class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save</button>

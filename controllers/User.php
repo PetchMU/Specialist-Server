@@ -142,6 +142,15 @@ class User {
     function edit($uid = NULL) {
         MenuFooter::hide();
 
+        $picture = $_FILES['picture'];
+
+        $thumb = null;
+        if ($picture['tmp_name'] && getimagesize($picture['tmp_name'])) {
+            $thumb_db  =  THUMB_FLODER . '/'.userInfo('uid') . '-' . $picture['name'];
+            $thumb = THUMB_PATH . '/'.userInfo('uid') . '-' . $picture['name'];
+            move_uploaded_file($picture['tmp_name'], $thumb);
+        }
+
         if (isset($_POST) && $_POST) {
             $model = Model::load('UserModel');
             $uid = userInfo('uid');
@@ -150,7 +159,9 @@ class User {
             $dob = $_POST['dob'];
             $phone = $_POST['phone'];
             $model->edit($uid, $fname, $lname, $dob, $phone);
-
+            if ($thumb) {
+                $model->changePicture($uid, $thumb_db);
+            }
             $update_done = TRUE;
         } else {
             $update_done = FALSE;
@@ -165,7 +176,7 @@ class User {
 
     function selectSendAllMessage() {
         $messagesend = FALSE;
-        
+
         if (isset($_POST['message']) && isset($_POST['uids'])) {
             $uid = userInfo('uid');
             $message = $_POST['message'];
