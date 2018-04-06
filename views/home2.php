@@ -63,10 +63,10 @@ include "header.php";
             <img src="/res/images/icon/event.jpg"/>
             <!--<h3>Event</h3>-->
         </a>
-        <a href="#" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/reminder.jpg"/>
+        <!--<a href="#" class="col s4 m4 home-menu">-->
+            <!--<img src="/res/images/icon/reminder.jpg"/>-->
             <!--<h3>Reminder</h3>-->
-        </a>
+        <!--</a>-->
 
     </div>
 </div>    

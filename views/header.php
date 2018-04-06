@@ -14,6 +14,11 @@
     </head>
 
     <body>
+        <style>
+            body{
+                background: #e9ebee
+            }
+        </style>
 
         <?php
         Toolbar::display();

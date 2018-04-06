@@ -9,15 +9,13 @@ include "header.php";
     <form class="row" method="POST">
         <div class="col s12">
             <div class="row">
-                <div class="input-field col s8">
+                <div class="input-field col m8 s12">
                     <i class="material-icons prefix">mode_edit</i>
                     <textarea name="message" id="icon_prefix2" class="materialize-textarea"></textarea>
                     <label for="icon_prefix2">Message</label>
                 </div>
-                <div class="col s2">
-                    <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 20px">Submit
-                        <i class="material-icons right">send all</i>
-                    </button>
+                <div class="col m2 s12">
+                    <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 20px">Submit<i class="material-icons right"></i></button>
                 </div>
             </div>
 
