@@ -4,7 +4,7 @@
         bottom: 0px;
         background: #fafafa;
         border-top: 1px solid #eee;
-        z-index: 100px;
+        z-index: 100;
     }
     .my-footer td{
         padding: 0px;
