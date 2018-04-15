@@ -7,7 +7,9 @@ include "header.php";
 
 <div class="row">
     <form class="col s12" method="post">
-
+        <div class="row">
+            <img src="/res/images/thumbnail/1.png" style="width: 100%"/>
+        </div>
         <div class="row">
             <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate">

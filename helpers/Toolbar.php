@@ -4,6 +4,7 @@ class Toolbar {
 
     static $title = 'MindContact';
     static $show_back = TRUE;
+    static $show_toolbar = TRUE;
 
     static function setTitle($title) {
         self::$title = $title;
@@ -16,8 +17,16 @@ class Toolbar {
     static function hideBackButton(){
         self::$show_back = FALSE;
     }
+    
+    static function hideToolbar(){
+        self::$show_toolbar = FALSE;
+    }
 
     static function display() {
+        
+        if(!self::$show_toolbar){
+            return;
+        }
 
         $userModel = Model::load('UserModel');
         $is_login = $userModel->isLogin();

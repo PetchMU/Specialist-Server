@@ -36,7 +36,7 @@ include "header.php";
     </div>
 <div class="row">
         <a href="/user/<?= $user['uid'] ?>" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/user_profile.jpg"/>
+            <img src="/res/images/icon/user_profile.png"/>
             <!--<h3>Profile</h3>-->
         </a>
         <a href="/user/list" class="col s4 m4 home-menu">
@@ -48,7 +48,7 @@ include "header.php";
             <!--<h3>Group</h3>-->
         </a>
         <a href="/notification" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/notification.jpg"/>
+            <img src="/res/images/icon/notification.png"/>
             <!--<h3>notification</h3>-->
         </a>
         <a href="/user/search" class="col s4 m4 home-menu">
@@ -60,13 +60,13 @@ include "header.php";
            <!--<h3>Search Group</h3>-->
         </a>
         <a href="/event" class="col s4 m4 home-menu">
-            <img src="/res/images/icon/event.jpg"/>
+            <img src="/res/images/icon/event.png"/>
             <!--<h3>Event</h3>-->
         </a>
-        <!--<a href="#" class="col s4 m4 home-menu">-->
-            <!--<img src="/res/images/icon/reminder.jpg"/>-->
+        <a href="#" class="col s4 m4 home-menu">
+            <img src="/res/images/icon/reminder.png"/>
             <!--<h3>Reminder</h3>-->
-        <!--</a>-->
+        </a>
 
     </div>
 </div>    

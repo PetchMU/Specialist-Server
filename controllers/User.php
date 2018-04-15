@@ -23,6 +23,8 @@ class User {
         } else {
             $owner = FALSE;
         }
+        
+        $hasAuthorize = $status == 'friend' || $owner;
 
         if ($userInfo == null) {
             View::load('profile_not_found');
@@ -32,7 +34,8 @@ class User {
                 'can_add_friend' => $status == 'not-friend',
                 'can_accept_or_deny' => $status == 'has-request',
                 'waiting_for_accept' => $status == 'waiting',
-                'owner' => $owner
+                'owner' => $owner,
+                'has_authorize' => $hasAuthorize
             ]);
         }
     }

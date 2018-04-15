@@ -22,6 +22,9 @@ $router->any("/user/:num/deny", "User.deny");
 $router->any("/user/search","Search.user");
 $router->any("/user/list","User.listAll");
 $router->any("/user/sendallmessage","User.selectSendAllMessage");
+$router->any("/user/:num/reminder", "Reminder.main");
+$router->any("/user/:num/reminder/add", "Reminder.add");
+$router->any("/user/:num/reminder/clear/:num", "Reminder.clear");
 
 
 $router->any("/admin/console", "admin/Admin.console");
@@ -49,3 +52,5 @@ $router->any("/event/submit", "Event.submit");
 
 $router->any("/notification", "Notification.main");
 $router->any("/notification/:num/read", "Notification.read");
+
+

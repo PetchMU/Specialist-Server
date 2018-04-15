@@ -38,14 +38,16 @@ include "header.php";
                 </div>
                 <div class="card-content">
                     <h3><?= $userInfo['fname'] . ' ' . $userInfo['lname'] ?></h3>
+                    <?php if($has_authorize) :?>
                     <h5>Birthdate</h5>
                     <?= date('j M Y', strtotime($userInfo['dob'])) ?>
                     <h5>Tel.</h5>
                     <a href="tel:<?= $userInfo['phone'] ?>"><?= $userInfo['phone'] ?></a>
                     <h5>Email</h5>
                     <a href="mailto:<?= $userInfo['email'] ?>"><?= $userInfo['email'] ?></a>
+                    <?php endif;?>
                 </div>
-                <?php if (!$owner): ?>
+                <?php if (!$owner && $has_authorize): ?>
                     <div class="card-action">
                         <a href="/user/<?= $userInfo['uid'] ?>/message">Private Massage</a>
                     </div>
