@@ -21,7 +21,7 @@ include "header.php";
                             <?php if (date('z') == date('z', strtotime($friend['dob']))): ?>
                                 <input placeholder="Wish" id="first_name" type="text" class="validate" name="birthday_message">
                                 <input type="hidden" name="uid" value="<?= $friend['uid'] ?>"/>
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Wish
+                                <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">Wish
                                     <i class="material-icons right">send</i>
                                 </button>
                             <?php endif; ?>

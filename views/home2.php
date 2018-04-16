@@ -63,7 +63,7 @@ include "header.php";
             <img src="/res/images/icon/event.png"/>
             <!--<h3>Event</h3>-->
         </a>
-        <a href="#" class="col s4 m4 home-menu">
+        <a href="/user/<?= $user['uid'] ?>/reminder" class="col s4 m4 home-menu">
             <img src="/res/images/icon/reminder.png"/>
             <!--<h3>Reminder</h3>-->
         </a>

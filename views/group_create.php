@@ -9,7 +9,7 @@ include "header.php";
                 <input placeholder="My Group" id="group_name" name="group_name" type="text" class="validate">
                 <label for="group_name">Group Name</label>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">
+            <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">
                 create
                 <i class="material-icons left">account_box</i>
             </button>

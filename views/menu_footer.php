@@ -27,14 +27,14 @@
         <tr>
             <td> 
                 <a href="/home">
-                    <i class="small material-icons indigo-text text-darken-3">home</i>
-                    <div class="menu-text indigo-text text-darken-3">Home</div>
+                    <i class="small material-icons indigo-text brown-text">home</i>
+                    <div class="menu-text indigo-text brown-text">Home</div>
                 </a>
             </td>
             <td>
                 <a href="/group">
-                    <i class="small material-icons  indigo-text text-darken-3">group</i>
-                    <div class="menu-text indigo-text text-darken-3">Group</div>
+                    <i class="small material-icons  indigo-text brown-text">group</i>
+                    <div class="menu-text indigo-text brown-text">Group</div>
                 </a>
             </td>
             <td> 
@@ -43,8 +43,8 @@
                         <i class="small material-icons red-text">notifications_active</i>
                         <div class="menu-text red-text">Notification(<?=$notify_count?>)</div>
                     <?php else: ?>
-                        <i class="small material-icons indigo-text text-darken-3">notifications</i>
-                        <div class="menu-text indigo-text text-darken-3">Notification</div>
+                        <i class="small material-icons indigo-text brown-text">notifications</i>
+                        <div class="menu-text indigo-text brown-text">Notification</div>
                     <?php endif; ?>
                 </a>
             </td>

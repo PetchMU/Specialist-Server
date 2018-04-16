@@ -19,13 +19,13 @@ include "header.php";
 
 function getNotiIcon($icon) {
     if ($icon == 1)
-        return "/res/images/icon/group_noti.png";
+        return "/res/images/icon/group_noti_1.png";
     if ($icon == 2)
-        return "/res/images/icon/friend_message.png";
+        return "/res/images/icon/friend_message1.png";
     if ($icon == 3)
         return "/res/images/icon/event_gift.jpg";
     if ($icon == 4)
-        return "/res/images/icon/friend_request.png";
+        return "/res/images/icon/friend_request1.png";
 }
 
 function getNotiLink($noti) {

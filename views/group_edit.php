@@ -14,7 +14,7 @@ include "header.php";
                 <input placeholder="Description" id="group_name" name="Description" type="text" class="validate" value="<?=$group['description']?>">
                 <label for="Description">Description</label>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">
+            <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">
                 save
                 <i class="material-icons left">account_box</i>
             </button>

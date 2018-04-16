@@ -7,7 +7,7 @@ include "header.php";
         <div class="col s12 m12">
 
             <a href="/group/<?= $gid ?>/edit" class="waves-effect waves-light btn right white grey-text"><i class="material-icons">settings</i></a>
-            <a href="/group/<?= $gid ?>/member" class="waves-effect waves-light btn right">List of member</a>
+            <a href="/group/<?= $gid ?>/member" class="waves-effect waves-light btn right brown lighten-1">List of member</a>
         </div>
     </div> 
     <?php if ($waiting_people > 0) : ?>
@@ -68,7 +68,7 @@ include "header.php";
 <?php if ($read_more): ?>
         <div class="row">
             <div class="col s12 m12">
-                <a href="/group/<?= $gid ?>/readmore" class="waves-effect waves-light btn right">read more...</a>
+                <a href="/group/<?= $gid ?>/readmore" class="waves-effect waves-light btn right brown lighten-1">read more...</a>
 
             </div>
         </div> 

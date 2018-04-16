@@ -37,7 +37,7 @@ include "header.php";
                                 </div>
                                 <div class="modal-footer">
                                     <a href="/group/<?= $gid ?>/member/<?= $member['uid'] ?>/reject" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
-                                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                    <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>

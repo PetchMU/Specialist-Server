@@ -16,7 +16,7 @@ include "header.php";
                 <textarea name='message' id="content"></textarea>
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
         </button>
     </div> 

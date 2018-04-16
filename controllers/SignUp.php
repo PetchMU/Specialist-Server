@@ -4,6 +4,7 @@ class SignUp {
 
     function main() {
         $userModel = Model::load('UserModel');
+        $uid = userInfo('uid');
         $err_email_exist = FALSE;
         $err_pass_miss_match = FALSE;
         $email = "";
@@ -24,7 +25,10 @@ class SignUp {
                     $err_email_exist = true;
                 }
                 elseif($result == UserModel::REGISTER_OK){
-                    View::load('register_success');
+                    View::load('register_success',[
+                        'uid' => $uid
+                        
+                        ]);
                     return;
                 }
             }

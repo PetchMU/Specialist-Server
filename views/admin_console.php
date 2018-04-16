@@ -22,10 +22,10 @@ include "header.php";
         <li>
             <?php include 'admin_console/reject.php';?>
         </li>
-        <li>
+<!--        <li>
             <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
             <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
+        </li>-->
     </ul>
 
 

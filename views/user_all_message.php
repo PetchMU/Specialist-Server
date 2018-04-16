@@ -15,7 +15,7 @@ include "header.php";
                     <label for="icon_prefix2">Message</label>
                 </div>
                 <div class="col m2 s12">
-                    <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 20px">Submit<i class="material-icons right"></i></button>
+                    <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action" style="margin-top: 20px">Send<i class="material-icons right"></i></button>
                 </div>
             </div>
 

@@ -73,7 +73,7 @@ include "header.php";
                     </div>
                 </div>
                 <div class="col s3">
-                    <button type="submit" class="waves-effect waves-light btn-large" style="width:82px;"><i class="material-icons right">send</i></button>
+                    <button type="submit" class="waves-effect waves-light btn-large brown lighten-1" style="width:82px;"><i class="material-icons right">send</i></button>
                 </div>
             </div>
         </div>

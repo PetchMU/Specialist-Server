@@ -33,7 +33,7 @@ include "header.php";
             </div>
         </div>
 
-        <button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Sign up</button>
+        <button type="submit" class="waves-effect waves-light btn-large brown lighten-1"><i class="material-icons left">cloud</i>Sign up</button>
 
 
     </form>

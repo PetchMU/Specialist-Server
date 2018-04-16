@@ -8,7 +8,7 @@ include "header.php";
 <div class="row">
     <form class="col s12" method="post">
         <div class="row">
-            <img src="/res/images/thumbnail/1.png" style="width: 100%"/>
+            <img src="/res/images/thumbnail/logo_mc.png" style="width: 100%"/>
         </div>
         <div class="row">
             <div class="input-field col s12">
@@ -23,7 +23,7 @@ include "header.php";
             </div>
         </div>
 
-        <button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Login</button>
+        <button type="submit" class="waves-effect waves-light btn-large brown lighten-1"><i class="material-icons left">cloud</i>Login</button>
     </form>
 </div>
 

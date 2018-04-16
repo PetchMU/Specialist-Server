@@ -20,7 +20,7 @@ include "header.php";
                 <label for="k">Search</label>
             </div>
             <div class="col s12">
-                <button class="btn waves-effect waves-light" type="submit">Submit
+                <button class="btn waves-effect waves-light brown lighten-1" type="submit">Submit
                     <i class="material-icons right">send</i>
                 </button>
 

@@ -36,7 +36,7 @@ include "header.php";
                     <label style="position: relative" for="upload">Uplode your avatar</label>
                 </div>
             </div>
-            <button class="waves-effect waves-light btn"><i class="material-icons left">save</i>Save</button>
+            <button class="waves-effect waves-light btn brown lighten-1"><i class="material-icons left">save</i>Save</button>
         </form>
     </div>
 </div>    

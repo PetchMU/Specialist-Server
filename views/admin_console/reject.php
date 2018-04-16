@@ -4,12 +4,12 @@
     <table>
         <thead>
             <tr>
-                <th>คนส่งเรื่อง</th>
-                <th>คนถูกไล่</th>
-                <th>กลุ่มไหน</th>
-                <th>เวลาา</th>
-                <th>เหตุผล</th>
-                <th>action</th>
+                <th>Rejertor</th>
+                <th>Rejected</th>
+                <th>Group</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Action</th>
             </tr>
         </thead>
 

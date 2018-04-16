@@ -69,7 +69,7 @@ function dateCountdown($datetime) {
                 <input type="text" class="timepicker" value="<?= date("H:i:s") ?>" name="time">
                 <label for="time">time</label>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light brown lighten-1" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
         </form>
