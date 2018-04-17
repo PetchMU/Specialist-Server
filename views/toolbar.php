@@ -46,7 +46,7 @@
             </ul>
         <?php else: ?>
             <ul id="slide-out" class="side-nav">
-                <li><a href="/singup">Sing up</a></li>
+                <li><a href="/singup">Sign up</a></li>
                 <li><a href="/login">Login</a></li>
             </ul>
         <?php endif; ?>

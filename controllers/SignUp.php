@@ -3,6 +3,8 @@
 class SignUp {
 
     function main() {
+        Toolbar::setTitle('Sign Up');
+        
         $userModel = Model::load('UserModel');
         $uid = userInfo('uid');
         $err_email_exist = FALSE;

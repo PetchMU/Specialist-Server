@@ -1,7 +1,10 @@
 <?php
 include "header.php";
 ?>
-<h1>Sign Up</h1>
+<div class="row">
+            <img src="/res/images/thumbnail/logo_mc.png" style="width: 100%"/>
+        </div>
+<!--<h3>Sign Up</h3>-->
 <div class="collection">
     
     <?php if($err_email_exist):?>

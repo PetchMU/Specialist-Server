@@ -14,7 +14,7 @@
 class Login {
     function main(){
         
-        Toolbar::setTitle('login');
+        Toolbar::setTitle('Login');
         
         $userModel = Model::load('UserModel');
         if(isset($_POST['email']) && isset($_POST['password'])){
